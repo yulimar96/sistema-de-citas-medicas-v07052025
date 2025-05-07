@@ -1,0 +1,1 @@
+  <box-icon name='user' type='solid' color='#fffff' ></box-icon>
