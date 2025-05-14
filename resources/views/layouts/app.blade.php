@@ -21,6 +21,9 @@
      <link href="{{ asset('web/img/favicon.png') }}" rel="icon">
     <!-- Iconos -->
     <script src="{{ asset('icons/boxicons.js') }}"></script>
+
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/45.0.0/ckeditor5.css" />
+
     
     <!-- Estilos CSS personalizados -->
     @stack('css')
@@ -66,7 +69,8 @@
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
-    
+    <script src="https://cdn.ckeditor.com/ckeditor5/45.0.0/ckeditor5.umd.js"></script>
+
     <!-- Script para confirmación de eliminación -->
     <script>
         function confirmDelete(userId) {
@@ -126,6 +130,40 @@
     <svg class="icon">
     <use xlink:href="{{ asset('icons/logo_clinic1.jpeg') }}#user"></use>
 </svg>
+<script>
+    <script type="importmap">
+    {
+        "imports": {
+            "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/45.0.0/ckeditor5.js",
+            "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/45.0.0/",
+            "ckeditor5-premium-features": "https://cdn.ckeditor.com/ckeditor5-premium-features/45.0.0/ckeditor5-premium-features.js",
+            "ckeditor5-premium-features/": "https://cdn.ckeditor.com/ckeditor5-premium-features/45.0.0/"
+        }
+    }
+</script>
+
+    const {
+    ClassicEditor,
+    Essentials,
+    Bold,
+    Italic,
+    Font,
+    Paragraph
+} = CKEDITOR;
+
+ClassicEditor
+    .create( document.querySelector( '#editor' ), {
+        licenseKey: '<YOUR_LICENSE_KEY>',
+        plugins: [ Essentials, Bold, Italic, Font, Paragraph ],
+        toolbar: [
+            'undo', 'redo', '|', 'bold', 'italic', '|',
+            'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor'
+        ]
+    } )
+    .then( /* ... */ )
+    .catch( /* ... */ );
+
+</script>
     @stack('js')
 </body>
 </html>

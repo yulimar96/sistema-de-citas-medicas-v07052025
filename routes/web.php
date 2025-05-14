@@ -15,6 +15,7 @@ use App\Http\Controllers\OrganizationalUnitTypeController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\MedicalHistoryController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -152,6 +153,16 @@ Route::get('/appointments/archived', [AppointmentController::class, 'archived'])
      ->name('appointments.archived');
       Route::get('/upload/{id}', [AppointmentController::class, 'upload_reserva_doctores'])->name('upload_reserva_doctores');
 
+});
+Route::middleware('auth')->prefix('historial_medico')->group(function () {
+    Route::get('/inicio', [MedicalHistoryController::class, 'index'])->name('history');
+    Route::get('/crear', [MedicalHistoryController::class, 'create'])->name('history.create');
+    Route::post('/Guardar', [MedicalHistoryController::class, 'store'])->name('history.store');
+    Route::get('/editar/{medicalHistory}', [MedicalHistoryController::class, 'edit'])->name('history.edit');
+    Route::patch('/actualizar/{medicalHistory}', [MedicalHistoryController::class, 'update'])->name('history.update');
+    Route::get('/mostrar/{medicalHistory}', [MedicalHistoryController::class, 'show'])->name('history.show');
+    Route::delete('/pdf/{id}', [MedicalHistoryController::class, 'pdf'])->name('history.destroy');
+    Route::delete('/eliminar/{medicalHistory}', [MedicalHistoryController::class, 'destroy'])->name('history.destroy');
 });
 Route::middleware('auth')->prefix('configuration')->group(function () {
     Route::get('/inicio', [AppointmentController::class, 'index'])->name('configuration');

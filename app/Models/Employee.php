@@ -83,7 +83,6 @@ class Employee extends Model
     {
         return $this->hasMany(Event::class, 'doctor_id');
     }
-
     // Accesor para nombre completo
     public function getFullNameAttribute()
     {
@@ -115,6 +114,10 @@ class Employee extends Model
        public function pay()
     {
         return $this->hasMany(Payment::class);
+    }
+    public function MedicalHistory()
+    {
+        return $this->hasMany(MedicalHistory::class);
     }
 }
 
